@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<cmath>
 #include<time.h>
+#include<unistd.h>
 #include LAPACK
 extern "C" {
 #include CBLAS

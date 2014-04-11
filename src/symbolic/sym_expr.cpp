@@ -824,9 +824,10 @@ ostream &sym::sym_prod::print(ostream &os) const {
 
 	for(int i=0;i<oper.size();i++) {
 		if(oper[i].second>=0&&i) os<<"*";
-		else if(oper[i].second<0)
+		else if(oper[i].second<0) {
 			if(i==0) os<<"1/";
 			else os<<"/";
+    };
 		os<<*(oper[i].first);
 		if(abs(oper[i].second)!=1) {
 			os<<"^";
