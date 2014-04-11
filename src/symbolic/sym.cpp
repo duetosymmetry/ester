@@ -165,12 +165,15 @@ sym operator*(const sym &s1,const sym &s2) {
 
 sym pow(const sym &s,const rational &q) {
 
-	if(typeid(*s.expr)==typeid(sym::sym_num)) 
-		return sym(pow(((sym::sym_num *)s.expr)->value,q.eval()));
+	if(typeid(*s.expr)==typeid(sym::sym_num)) {
+		sym snew(pow(((sym::sym_num *)s.expr)->value,q.eval()));
+		snew.context=s.check_context();
+		return snew;
+	}
 
-	sym snew;
-	
+	sym snew;	
 	snew.context=s.check_context();
+	
 	delete snew.expr;
 	snew.expr=s.expr->clone();
 	snew.expr=snew.expr->pow(q)->reduce();
@@ -274,7 +277,7 @@ bool sym::operator==(const sym &s) const {return *expr==*s.expr;}
 
 matrix sym::eval() const {
 
-	return expr->eval();
+	return expr->eval()*ones(context->map.nr,context->map.nt);
 
 }
 
