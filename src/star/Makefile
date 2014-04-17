@@ -21,10 +21,9 @@ $(LIB): $(HEADERS) $(OBJS)
 $(ESTER_ROOT)/include/%.h: %.h $(SRC_H) $(DEPS)
 	cp $< $(ESTER_ROOT)/include
 
-clean: 
+clean:
 	rm -f *.o
 	rm -f $(LIB)
 
 distclean:
 	rm -f $(HEADERS)
-	

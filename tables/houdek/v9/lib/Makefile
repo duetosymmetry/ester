@@ -1,5 +1,5 @@
 #
-# Makefile for the lib-dir of the 
+# Makefile for the lib-dir of the
 # opacity-interpolation package
 #
 # G. Houdek

@@ -22,17 +22,16 @@ $(LIB): $(HEADERS) $(OBJS)
 
 %.o: %.cpp $(HEADERS) $(DEPS)
 	$(CC) -c $< $(CCFLAGS) $(VARS)
-	
-%.o: %.F 
+
+%.o: %.F
 	$(FC) -c $< $(FCFLAGS) $(VARS)
 
 $(ESTER_ROOT)/include/%.h: %.h $(SRC_H) $(DEPS)
 	cp $< $(ESTER_ROOT)/include
 
-clean: 
+clean:
 	rm -f *.o
 	rm -f $(LIB)
 
 distclean:
 	rm -f $(HEADERS)
-	

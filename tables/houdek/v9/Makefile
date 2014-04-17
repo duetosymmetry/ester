@@ -22,7 +22,7 @@ FFLAGS =  $(FCFLAGS) -fd-lines-as-comments
 
 all: dopxext_s dopxext_s_95 doptesf dopdof dopdos exakop95\
      da2b dexak2 kur2l2g a2b95 exop95 alex94bext kur2l2g_95
-     
+
 
 #--------------------------------------------
 
@@ -64,7 +64,7 @@ RKS_OBJ = chkfl.o         glberr.o        softfl.o        stiffb.o\
           dotprd.o        reset.o         stepa.o         truerr.o\
           envirn.o        rkmsg.o         stepb.o         ut.o    \
           evali.o         rksit.o         stiff.o                 \
-          formi.o         setup.o         stiffa.o                
+          formi.o         setup.o         stiffa.o
 
 LIB_SRC = $(LIB_OBJ:%.o=$(LIB_DIR)/%.f)
 RKS_SRC = $(RKS_OBJ:%.o=$(RKS_DIR)/%.f)
@@ -95,7 +95,7 @@ dexak2: $(LIB_DIR)/$(LIB_LIB) dexak2.o
 
 exop95: $(LIB_DIR)/$(LIB_LIB) exop95.o
 	$(FC) $(FFLAGS) -o $@ $@.o $(LIB_DIL) $(LIB_DEX)
-	
+
 exakop95: $(LIB_DIR)/$(LIB_LIB) exakop95.o
 	$(FC) $(FFLAGS) -o $@ $@.o $(LIB_DIL) $(LIB_DEX)
 

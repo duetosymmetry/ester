@@ -17,11 +17,11 @@ clean: opal_clean houdek_clean cesam_nuc_clean
 
 opal_clean:
 	rm -f -r opal/eos_tables
-	
+
 houdek_clean:
 	make -C houdek/v9 clean
-	
+
 cesam_nuc_clean:
 	make -C cesam_nuc clean
-	
+
 .PHONY: tables opal houdek clean opal_clean houdek_clean cesam_nuc cesam_nuc_clean

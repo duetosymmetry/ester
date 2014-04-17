@@ -1,17 +1,16 @@
-
 include make.inc
 
 UNAME:=$(shell uname -s)
 
 FCFLAGS:=$(FCFLAGS) -I$(ESTER_ROOT)/tables/cesam_nuc
 LDFLAGS:=$(LDFLAGS) -L$(ESTER_ROOT)/tables/houdek/v9/lib -L$(ESTER_ROOT)/tables/cesam_nuc
-LIBS:=-lopint -lnuc $(LIBS) 
+LIBS:=-lopint -lnuc $(LIBS)
 
 VARS=-DCBLAS=\<$(BLAS_H)\> -DLAPACK=\<$(LAPACK_H)\> -DESTER_ROOT=\"$(ESTER_ROOT)\"
-ifeq ($(USE_PGPLOT),1) 
+ifeq ($(USE_PGPLOT),1)
 	VARS:=$(VARS) -DUSE_PGPLOT=1
 endif
-CCFLAGS:=$(CCFLAGS) -I$(ESTER_ROOT)/include 
+CCFLAGS:=$(CCFLAGS) -I$(ESTER_ROOT)/include
 LDFLAGS:=$(LDFLAGS) -L$(ESTER_ROOT)/lib -Wl,-rpath,$(ESTER_ROOT)/lib
 
 export
@@ -31,8 +30,8 @@ DISTCLEANDIRS = $(DIRS:%=distclean-%)
 
 all: main $(LIB) $(ESTER_ROOT)/bin/ester_build
 
-tables: 
-	make -C ../tables	
+tables:
+	make -C ../tables
 
 clean: $(CLEANDIRS)
 	make -C main clean
@@ -58,7 +57,7 @@ $(ALL_LIBS): $(DIRS)
 
 $(DIRS):
 	$(MAKE) -C $@ DIR=$@
-	
+
 $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean DIR=$(@:clean-%=%)
 
@@ -77,7 +76,7 @@ $(ESTER_ROOT)/bin/ester_build: $(LIB)
 
 
 global: matrix
-matrix: 
+matrix:
 numdiff: global matrix
 graphics: matrix
 mapping: global matrix numdiff graphics solver
@@ -87,17 +86,16 @@ symbolic: matrix mapping solver
 physics: global matrix numdiff
 star: global matrix numdiff mapping parser physics solver graphics symbolic
 
-dist: 
+dist:
 	tar -C $(ESTER_ROOT)/.. -cf ester.tar ester/src --exclude *.o --exclude *.a --exclude ester.tar.gz
 	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/bin --exclude ester/bin/*
-	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/config 
+	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/config
 	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/include  --exclude ester/include/*
 	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/lib --exclude ester/lib/*
 	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/python
 	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/tables
 	tar -C $(ESTER_ROOT)/.. -rf ester.tar ester/utils
 	gzip ester.tar
-	
+
 test:
 	make -C ../test/models
-

@@ -1,4 +1,3 @@
-
 MAIN = star1d star2d gen_output version ester_info star_evol ester
 MAIN_EXES = $(addprefix $(ESTER_ROOT)/bin/,$(MAIN))
 
@@ -23,7 +22,7 @@ $(ESTER_ROOT)/bin/gen_output: gen_output.cpp $(LIB)
 $(ESTER_ROOT)/bin/version: version.cpp $(LIB)
 	$(CC) -c version.cpp $(CCFLAGS) $(VARS)
 	$(LD) -o $@ version.o $(LDFLAGS) -lester $(LIBS)
-	
+
 $(ESTER_ROOT)/bin/ester_info: ester_info.cpp $(LIB)
 	$(CC) -c ester_info.cpp $(CCFLAGS) $(VARS)
 	$(LD) -o $@ ester_info.o $(LDFLAGS) -lester $(LIBS)
