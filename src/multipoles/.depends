@@ -1,0 +1,8 @@
+# MAKEDEPENDS
+
+multipoles.o: ../../include/star.h ../../include/matrix.h
+multipoles.o: ../../include/solver.h ../../include/numdiff.h
+multipoles.o: ../../include/mapping.h ../../include/graphics.h
+multipoles.o: ../../include/physics.h ../../include/constants.h
+multipoles.o: ../../include/parser.h ../../include/debug.h
+multipoles.o: ../../include/symbolic.h
