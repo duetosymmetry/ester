@@ -1,0 +1,18 @@
+# MAKEDEPENDS
+
+iso_contours.o: ../../include/star.h ../../include/matrix.h
+iso_contours.o: ../../include/solver.h ../../include/numdiff.h
+iso_contours.o: ../../include/mapping.h ../../include/graphics.h
+iso_contours.o: ../../include/physics.h ../../include/constants.h
+iso_contours.o: ../../include/parser.h ../../include/debug.h
+iso_contours.o: ../../include/symbolic.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_roots.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_types.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_math.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_sys.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_inline.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_machine.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_precision.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_nan.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_pow_int.h
+iso_contours.o: /usr/local/Cellar/gsl/1.16/include/gsl/gsl_minmax.h
