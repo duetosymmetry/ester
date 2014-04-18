@@ -54,6 +54,7 @@ class mapping {
     int remap();
     
     matrix eval(const matrix &y,const matrix &ri, const matrix &thi,int parity=0) const; 
+    matrix eval_z(const matrix &y,const matrix &zi, const matrix &thi,int parity=0) const;
     
     
     matrix dr(const matrix &) const;

@@ -325,6 +325,29 @@ matrix mapping::eval(const matrix &y,const matrix &ri, const matrix &thi,int par
 
 }
 
+matrix mapping::eval_z(const matrix &y,const matrix &zi, const matrix &thi,int parity) const {
+
+  if(zi.nrows()!=thi.nrows()||zi.ncols()!=thi.ncols()) {
+    fprintf(stderr,"Error: (mapping.eval) Matrix dimensions must agree\n");
+    exit(1);
+  }
+  if(y.nrows()!=gl.N||y.ncols()!=leg.npts) {
+    fprintf(stderr,"Error: (mapping.eval) Matrix dimensions must agree\n");
+    exit(1);
+  }
+
+  matrix yi(zi.nrows(),zi.ncols());
+  int N=zi.nrows()*zi.ncols();
+  matrix yth,T;
+  for(int i=0;i<N;i++) {
+    yth=leg.eval(y,thi(i),T,parity/10,parity%10);
+    yi(i)=gl.eval(yth,zi(i))(0);
+  }
+
+  return yi;
+
+}
+
 matrix mapping::zeta_to_r(const matrix &z) const {
 	matrix rr(z.nrows(),z.ncols());
 	
