@@ -34,11 +34,11 @@ int main(int argc,char *argv[]) {
 
   // The last contour is simply the surface.
   // Do that one separately.
-  matrix equatorial_radii = vector(s.map.r(s.nr-1, 0) / ncontours,
-                                   s.map.r(s.nr-1, 0) * (1. - 1. / ncontours),
+  matrix equatorial_zeta = vector(s.z(s.nr-1, 0) / ncontours,
+                                   s.z(s.nr-1, 0) * (1. - 1. / ncontours),
                                    ncontours-1);
 
-  matrix levels = s.map.eval( field, equatorial_radii, zeros( 1, ncontours-1 ) );
+  matrix levels = s.map.eval_z( field, equatorial_zeta, zeros( 1, ncontours-1 ) );
 
   matrix field_theta, r_theta;
 
