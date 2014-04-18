@@ -96,6 +96,8 @@ int main(int argc,char *argv[]) {
   s.th.write();
   contours.write();
 
+  gsl_root_fsolver_free (sol);
+
   return 0;
 
 };
