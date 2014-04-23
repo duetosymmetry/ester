@@ -93,8 +93,17 @@ int main(int argc,char *argv[]) {
     contours( ncontours - 1, ith) = s.map.R(s.ndomains, ith);
   };
 
-  s.th.write();
-  contours.write();
+  // Output
+  // Can't just use .write() because I want to output a rectangular csv file
+  for (int ith = 0; ith < s.nth; ith++) {
+    printf("%.14e",s.th(ith));
+    for (int icontour = 0; icontour < ncontours; icontour++)
+      printf(",%.14e",contours(icontour, ith));
+    printf("\n");
+  };
+
+  // s.th.write();
+  // contours.write();
 
   gsl_root_fsolver_free (sol);
 
