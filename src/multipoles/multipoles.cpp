@@ -22,7 +22,6 @@ int main(int argc,char *argv[]) {
   s.read(argv[1]);
 
   const double chis = chi(s);
-  printf("chi = %.6f\n", chis);
 
   const double M0 = M(s,0), S1 = S(s,1);
   const double M0g = Mgeom(s,0), S1g = Sgeom(s,1);
@@ -31,14 +30,18 @@ int main(int argc,char *argv[]) {
     if (0 == ell % 2) { // even
       const double Mlg = Mgeom(s, ell);
       const double Mlbar = Mlg / M0g / pow(M0g * chis , ell);
-      printf("M_{%d} = %.6e cm^%d\n", ell, Mlg, ell+1);
-      printf("\\bar{M}_{%d} = %.6e\n", ell, Mlbar);
+      // printf("M_{%d} = %.6e cm^%d\n", ell, Mlg, ell+1);
+      // printf("\\bar{M}_{%d} = %.6e\n", ell, Mlbar);
+      printf("%d,%.6e,%.6e\n", ell, Mlg, Mlbar);
     } else { // odd
-      const double Sl = Sgeom(s,ell);
-      const double Slbar = Sl / M0g / pow(M0g * chis , ell);
-      printf("S_{%d} = %.6e cm^%d\n", ell, Sl, ell+1);
-      printf("\\bar{S}_{%d} = %.6e\n", ell, Slbar);
+      const double Slg = Sgeom(s,ell);
+      const double Slbar = Slg / M0g / pow(M0g * chis , ell);
+      // printf("S_{%d} = %.6e cm^%d\n", ell, Slg, ell+1);
+      // printf("\\bar{S}_{%d} = %.6e\n", ell, Slbar);
+      printf("%d,%.6e,%.6e\n", ell, Slg, Slbar);
     };
+
+  printf("%d,%.6f,%.6f\n", -1, chis, chis);
 
   return 0;
 
