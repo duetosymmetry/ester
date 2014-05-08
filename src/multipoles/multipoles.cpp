@@ -23,7 +23,6 @@ int main(int argc,char *argv[]) {
 
   const double chis = chi(s);
 
-  const double M0 = M(s,0), S1 = S(s,1);
   const double M0g = Mgeom(s,0), S1g = Sgeom(s,1);
 
   for ( int ell = 0; ell < s.nth && ell <= 10; ell++)
@@ -41,7 +40,9 @@ int main(int argc,char *argv[]) {
       printf("%d,%.6e,%.6e\n", ell, Slg, Slbar);
     };
 
-  printf("%d,%.6f,%.6f\n", -1, chis, chis);
+  // Equatorial omega
+  double we = s.map.leg.eval_00(s.w.row(-1),PI/2)(0);
+  printf("%d,%.6f,%.6e\n", -1, chis, we * s.units.Omega / C_LIGHT); // in rad/cm
 
   return 0;
 
