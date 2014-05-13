@@ -5,9 +5,14 @@
 double M(star2d &s, unsigned int ell);
 double Mcgs(star2d &s, unsigned int ell);
 double Mgeom(star2d &s, unsigned int ell);
+
 double S(star2d &s, unsigned int ell);
 double Scgs(star2d &s, unsigned int ell);
 double Sgeom(star2d &s, unsigned int ell);
+
+double Iint(star2d &s);
+double Icgs(star2d &s);
+double Igeom(star2d &s);
 
 double chi(star2d &s);
 
@@ -40,9 +45,14 @@ int main(int argc,char *argv[]) {
       printf("%d,%.6e,%.6e\n", ell, Slg, Slbar);
     };
 
+  // I computed from integral
+  double Ival = Igeom(s);
   // Equatorial omega
   double we = s.map.leg.eval_00(s.w.row(-1),PI/2)(0);
-  printf("%d,%.6f,%.6e\n", -1, chis, we * s.units.Omega / C_LIGHT); // in rad/cm
+  printf("%.6f,%.6f,%.6e\n",
+         Ival,
+         chis,
+         we * s.units.Omega / C_LIGHT); // in rad/cm
 
   return 0;
 
@@ -110,6 +120,29 @@ double Sgeom(star2d &s, unsigned int ell)
   Sl *= GRAV / pow(C_LIGHT, 3.0);
 
   return Sl;
+};
+
+double Iint(star2d &s)
+{
+   return 4./3.*PI * (s.map.gl.I,
+                      s.rho * pow(s.r,4.0) * s.map.rz,
+                      s.map.leg.I_00)(0);
+};
+
+double Icgs(star2d &s)
+{
+  double Ival = Iint(s);
+  Ival *= s.units.rho * pow(s.units.r, 5.0);
+
+  return Ival;
+};
+
+double Igeom(star2d &s)
+{
+  double Ival = Icgs(s);
+  Ival *= GRAV / (C_LIGHT * C_LIGHT);
+
+  return Ival;
 };
 
 double chi(star2d &s)
